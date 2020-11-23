@@ -5,7 +5,11 @@ import Camera from './camera'
 function App() {
   return (
     <div className="App">
+      <header className="App-header">
+       <div>Sec Cam</div>
+      </header>
       <Camera/>
+      
     </div>
   );
 }
