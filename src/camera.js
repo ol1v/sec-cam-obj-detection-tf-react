@@ -73,18 +73,20 @@ const Camera = () => {
     }
 
     function startRecording() {
-        if(recordingActive) {
+        if(recordingActive.current) {
             return;
         }
         // start recording
+        recordingActive.current = true
         console.log('started recording')
     }
 
     function stopRecording() {
-        if(!recordingActive) {
+        if(!recordingActive.current) {
             return;
         }
         // stop recording
+        recordingActive.current = false
         console.log('stopped recording')
     }
 
