@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-       <div>Sec Cam</div>
+       <div>
+         Sec Cam Add Links here
+       </div>
       </header>
       <Camera/>
       
