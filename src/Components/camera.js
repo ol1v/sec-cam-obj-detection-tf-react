@@ -85,7 +85,7 @@ const Camera = () => {
         // Create mediarecorder and save video content from stream
         recorderRef.current = new MediaRecorder(window.stream)
 
-        recorderRef.current.ondataavailable = function(e) {
+        recorderRef.current.ondataavailable = function(e) {         // POST to backend here?
             const title = new Date() + ""
             const href = URL.createObjectURL(e.data)
             setRecords(previousRecords => {
@@ -117,7 +117,13 @@ const Camera = () => {
                     recordingStandby.current = true
                     detectFrame()
                 }}>Start</button>
-            <button>Stop</button>
+            <button
+                onClick={() => {
+                    // Run detection
+                    recordingStandby.current = false
+                    stopRecording()
+                }}
+                >Stop</button>
             <div>
                 <h3>Records:</h3>
                 {!records.length
