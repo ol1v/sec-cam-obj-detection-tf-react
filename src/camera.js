@@ -1,13 +1,15 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import '@tensorflow/tfjs'
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
 
 const Camera = () => {
+    // state for saving recorded video
+    const [records, setRecords] = useState([])
 
     // refs
     const videoElement = useRef(null)
     const modelRef = useRef(null)
-
+    const recorderRef = useRef(null)
     const recordingStandby = useRef(false)
     const recordingActive = useRef(false)
     const lastDetectedFramesRef = useRef([]) /**Array of booleans to make sure recording doesn't 
@@ -79,6 +81,19 @@ const Camera = () => {
         // start recording
         recordingActive.current = true
         console.log('started recording')
+
+        // Create mediarecorder and save video content from stream
+        recorderRef.current = new MediaRecorder(window.stream)
+
+        recorderRef.current.ondataavailable = function(e) {
+            const title = new Date() + ""
+            const href = URL.createObjectURL(e.data)
+            setRecords(previousRecords => {
+                return [...previousRecords, {href, title}]
+            })
+        }
+
+        recorderRef.current.start()
     }
 
     function stopRecording() {
@@ -87,7 +102,9 @@ const Camera = () => {
         }
         // stop recording
         recordingActive.current = false
+        recorderRef.current.stop()
         console.log('stopped recording')
+        lastDetectedFramesRef.current = [] // Clear last detected frames
     }
 
     return (
@@ -101,7 +118,23 @@ const Camera = () => {
                     detectFrame()
                 }}>Start</button>
             <button>Stop</button>
+            <div>
+                <h3>Records:</h3>
+                {!records.length
+            ? null
+            : records.map(record => {
+                return (
+                  <div key={record.title}>
+                    <div >
+                      <h5>{record.title}</h5>
+                      <video controls src={record.href}></video>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
         </div>
+        
     )
 }
 
