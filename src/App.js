@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import Camera from './camera'
+import Camera from './Components/camera'
+import Recordings from './Pages/Recordings'
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 function App() {
@@ -14,20 +15,20 @@ function App() {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/videos">Videos</Link>
+            <Link to="/Recordings">Recordings</Link>
           </li>
         </ul>
       </nav>
       <Switch>
         <Route exact path="/">
-          Hem
+          <Camera/>
         </Route>
-        <Route path="/Pages/Recordings">Videos</Route>
+        <Route path="/Recordings">
+          <Recordings/>
+        </Route>
       </Switch>
     </Router>
       </header>
-      <Camera/>
-      
     </div>
   );
 }
