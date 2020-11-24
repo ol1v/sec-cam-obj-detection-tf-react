@@ -88,8 +88,9 @@ const Camera = () => {
         recorderRef.current.ondataavailable = function(e) {         // POST to backend here?
             const title = new Date() + ""
             const href = URL.createObjectURL(e.data)
+            const blob = e.data
             setRecords(previousRecords => {
-                return [...previousRecords, {href, title}]
+                return [...previousRecords, {href, title, blob}]
             })
         }
 
@@ -122,6 +123,7 @@ const Camera = () => {
                     // Run detection
                     recordingStandby.current = false
                     stopRecording()
+                    console.log(records[0])
                 }}
                 >Stop</button>
             <div>
