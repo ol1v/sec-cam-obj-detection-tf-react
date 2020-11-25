@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import '@tensorflow/tfjs'
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
+import { Upload } from '.././Utils/Files'
 
 const Camera = () => {
     // state for saving recorded video
@@ -89,6 +90,8 @@ const Camera = () => {
             const title = new Date() + ""
             const href = URL.createObjectURL(e.data)
             const blob = e.data
+            console.log('CAMERA DATA.BLOB = ' + blob)
+            
             setRecords(previousRecords => {
                 return [...previousRecords, {href, title, blob}]
             })
@@ -123,7 +126,6 @@ const Camera = () => {
                     // Run detection
                     recordingStandby.current = false
                     stopRecording()
-                    console.log(records[0])
                 }}
                 >Stop</button>
             <div>
@@ -136,6 +138,11 @@ const Camera = () => {
                     <div >
                       <h5>{record.title}</h5>
                       <video controls src={record.href}></video>
+                      <button
+                      onClick={() => {
+                        Upload(record)
+                      }}
+                      >Save video</button>
                     </div>
                   </div>
                 );
