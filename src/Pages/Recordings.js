@@ -1,3 +1,4 @@
+import Videos from '../Components/Videos'
 /**För G:
 
     
@@ -18,7 +19,9 @@ För VG så ska, utöver att kraven för G är uppfyllda, följande vara uppfyll
  */
 
  function Recordings () {
-     return <div>RECORDINGS</div>
+     return <div>
+         <Videos/>
+     </div>
  }
 
  export default Recordings

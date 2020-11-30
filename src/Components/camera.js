@@ -86,11 +86,10 @@ const Camera = () => {
         // Create mediarecorder and save video content from stream
         recorderRef.current = new MediaRecorder(window.stream)
 
-        recorderRef.current.ondataavailable = function(e) {         // POST to backend here?
+        recorderRef.current.ondataavailable = function(e) {        
             const title = new Date() + ""
             const href = URL.createObjectURL(e.data)
             const blob = e.data
-            console.log('CAMERA DATA.BLOB = ' + blob)
             
             setRecords(previousRecords => {
                 return [...previousRecords, {href, title, blob}]
