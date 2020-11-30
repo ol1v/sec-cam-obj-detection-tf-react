@@ -20,7 +20,7 @@ För VG så ska, utöver att kraven för G är uppfyllda, följande vara uppfyll
 
  function Recordings () {
      return <div>
-         <Videos/>
+         <Videos/>  
      </div>
  }
 

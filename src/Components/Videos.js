@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import styled from 'styled-components'
+
+/** *********************
+ *  **STYLED-COMPONENTS**
+    ********************* */
+
+const Div = styled.div`
+        color: white;
+        `
+
 function Videos() {
 
     const [records, setRecords] = useState([])
@@ -8,14 +18,35 @@ function Videos() {
 
     useEffect(() => {
         axios.get('http://localhost:8000/saved-videos')
-        .then(res => {
-            console.log(res)
-            setRecords(res.data)
-        })
-    },[])
-    return <div>{!records.length
-        ? null
-    : <div>{records}</div>}</div>
-} 
+            .then(res => {
+                console.log(res.data)
+                setRecords(res.data.data)
+            })
+    }, [])
+    return <Div>
+
+        Browse your saved videos here.
+        
+        <div>
+                <h3>Saved Records</h3>
+                {!records.length
+            ? null
+            : records.map(record => {
+                return (
+                  <div key={record}>
+                    <div >
+                      <h5>{record}</h5>
+                      
+                      <button
+                      onClick={() => {
+                        
+                      }}
+                      >Watch Video</button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div></Div>
+}
 
 export default Videos
