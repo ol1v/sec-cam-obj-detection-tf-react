@@ -6,12 +6,13 @@ import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 function App() {
   return (
     <div className="App">
+      <div>You  have 5 unsaved videos</div>
       <h1>Security Camera</h1>
       <Router>
         <nav className="Navbar">
           <ul>
             <li>
-              <Link to="/" style={{textDecoration: 'none'}}>Home</Link>
+              <Link to="/" style={{ textDecoration: 'none' }}>Home</Link>
             </li>
             <li>
               <Link to="/Recordings">Recordings</Link>
