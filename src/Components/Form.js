@@ -1,9 +1,12 @@
 import { Formik, Field, ErrorMessage, Form } from 'formik'
+import { Upload } from '.././Utils/Files'
 
-function PostForm() {
+function PostForm(props) {
     return <Formik
-    initialValues={{ name: '', description: '' }}
+    initialValues={{ name: props.record.title, description: '' }}
     onSubmit={(values, { setSubmitting }) => {
+      console.log(props.record.blob) // ---------------------------Posta här
+      Upload(props.record, values)
       setTimeout(() => {
         setSubmitting(false)
       }, 1000)
@@ -34,7 +37,7 @@ function PostForm() {
           <Field name="description" />
         </label>
         <ErrorMessage component="span" name="description" />
-        <input disabled={!dirty || isSubmitting || !isValid} type="submit" />
+        <input disabled={!dirty || isSubmitting || !isValid} type="submit" value="Save"/>
       </Form>
     )}
   </Formik>

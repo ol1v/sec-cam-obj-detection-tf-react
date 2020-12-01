@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import '@tensorflow/tfjs'
 import * as cocoSsd from "@tensorflow-models/coco-ssd"
-import { Upload } from '.././Utils/Files'
+// import { Upload } from '.././Utils/Files'
+import Form from '../Components/Form'
 
 const Camera = () => {
     // state for saving recorded video
@@ -133,15 +134,17 @@ const Camera = () => {
             ? null
             : records.map(record => {
                 return (
+                    
                   <div key={record.title}>
                     <div >
                       <h5>{record.title}</h5>
                       <video controls src={record.href}></video>
-                      <button
+                      {/* <button
                       onClick={() => {
-                        Upload(record)
+                        record.saveState = true
                       }}
-                      >Save video</button>
+                      >Save video</button> */}
+                      <Form record={record}/>
                     </div>
                   </div>
                 );
