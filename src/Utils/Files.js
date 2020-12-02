@@ -14,9 +14,13 @@ export const Upload = async (data, values) => {
     await axios.post(url + 'upload-video/', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((res) => {
             // Handle result
-            if(res.message) 
-            console.log(res.message)
+            if (res.message)
+                console.log(res.message)
             else
-            console.log(res)
+                console.log(res)
         })
+}
+
+export const Download = async () => {
+    return await axios.get('http://localhost:8000/test', { responseType: 'blob' })     
 }

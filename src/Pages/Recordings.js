@@ -1,4 +1,6 @@
 import Videos from '../Components/Videos'
+import {useContext} from 'react'
+import AppContext from '../Utils/AppContext'
 
 /**För G:
     
@@ -11,8 +13,10 @@ För VG så ska, utöver att kraven för G är uppfyllda, följande vara uppfyll
  */
 
  function Recordings () {
+     const Val = useContext(AppContext)
      return <div>
          <Videos/>
+        <div>{Val}</div>
      </div>
  }
 
