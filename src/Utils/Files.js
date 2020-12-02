@@ -21,6 +21,6 @@ export const Upload = async (data, values) => {
         })
 }
 
-export const Download = async () => {
-    return await axios.get('http://localhost:8000/test', { responseType: 'blob' })     
+export const Download = async (filename) => {
+    return await axios.get(`http://localhost:8000/videos/${filename}`, { params: { file: filename }, responseType: 'blob' })
 }

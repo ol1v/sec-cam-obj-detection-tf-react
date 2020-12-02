@@ -28,18 +28,6 @@ function Videos() {
         setRecords(res.data.data)
         
       })
-
-    // axios.get('http://localhost:8000/test', { responseType: 'blob' })
-    //   .then(res => {
-    //     const videoStream = res.data
-    //     let testRes = new Blob([videoStream], { type: 'video/webm' })
-    //     console.log(testRes)
-
-    //     const href = URL.createObjectURL(testRes)
-    //     const blob = testRes
-
-    //     setRecords({href,blob})
-    //   })
   }, [videoElement])
   return <Div>
 
@@ -60,14 +48,14 @@ function Videos() {
                 <p>Add thumbnail here</p>
                 <button
                   onClick={() => {
-                    Download().then(res => {
+                    Download(record).then(res => {
                       const videoStream = res.data
                       let testRes = new Blob([videoStream], { type: 'video/webm' })
 
                       const href = URL.createObjectURL(testRes)
                       const blob = testRes
 
-                      videoElement.current = {href, blob} // funkar måste rendera i ett videoelement bara..
+                      videoElement.current = {href, blob} // tempRef
                       
                       setRecords({href, blob}) // very temporary...
                     })

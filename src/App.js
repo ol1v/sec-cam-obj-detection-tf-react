@@ -4,6 +4,22 @@ import Recordings from './Pages/Recordings'
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import AppContext from './Utils/AppContext'
 
+/** TODO: 
+ *  CLIENT:
+ *  Fix thumbnails with ffmpeg
+ *  Create callbackRef that can handle rerendering component after video is set in Videos.js
+ *  Fix UX
+ *  Clean project up
+ *  
+ *  SERVER:
+ *  Put all information about uploadedfiles in database
+ *  Use router for better projectstructure
+ *  Create thumbnails of uploaded videos and send back to client
+ *  Clean up code
+ *  Error handeling
+ *  
+ */
+
 function App() {
   return (
     <div className="App">
