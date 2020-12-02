@@ -2,6 +2,7 @@ import './App.css';
 import Homepage from './Pages/Homepage'
 import Recordings from './Pages/Recordings'
 import { Link, BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import AppContext from './Utils/AppContext'
 
 function App() {
   return (
@@ -24,7 +25,12 @@ function App() {
             <Homepage />
           </Route>
           <Route path="/Recordings">
-            <Recordings />
+              <AppContext.Provider value={'Använd detta till något vettigt senare'}>
+              <Recordings />
+              </AppContext.Provider>
+              
+              
+            
           </Route>
         </Switch>
       </Router>
